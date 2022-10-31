@@ -87,3 +87,16 @@ seneca.act('role:web', {
         }
     }
 })
+
+//express web server
+var express = require('express');
+var app = express();
+app.use(require("body-parser").json())
+app.use(seneca.export('web'));
+
+app.listen(3009)
+console.log("Server listening on localhost:3009 ...");
+console.log("----- Requests -------------------------");
+console.log("http://localhost:3009/patientderver/add-patient?patientname=John&patientphone=41234567891&patientaddress=E1M9T1&patientage=80&patientgender=male");
+console.log("http://localhost:3009/patientderver/get-patient?patient_id=g8fdpw");
+console.log("http://localhost:3009/patientderver/get-all-patients");
