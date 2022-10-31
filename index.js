@@ -72,3 +72,18 @@ seneca.add('role:patient, cmd:get-all-patients', function (args, done) {
         done(err, msg);
     });
 });
+
+// Initiliazed express 
+seneca.act('role:web', {
+    use: {
+        prefix: '/patientderver',
+        pin: { role: 'patient', cmd: '*' },
+        map: 
+        {
+            'add-patient': { GET: true, POST: true},
+            'get-patient': { GET: true},
+            'get-all-patients': { GET: true},
+        
+        }
+    }
+})
